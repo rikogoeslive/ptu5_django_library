@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.html import format_html
+from django.urls import reverse
 import uuid
 
 # Create your models here.
@@ -25,6 +27,9 @@ class Author(models.Model):
         return f"{self.first_name} {self.last_name}"
     display_books.short_description = 'books'
 
+    def link(self) -> str:
+        link = reverse('author', kwargs={'author_id':self.id})
+        return format_html('<a href="{link}">{author}</a>', link=link, author=self.__str__())
 
     class Meta:
         ordering = ['last_name', 'first_name']
@@ -42,7 +47,7 @@ class Book(models.Model):
     #protect - neleidzia istrinti autoriaus jei turi knygu (saugiausias)
     #set null - visas knygas kurios turi ta autoriu paliks be autoriaus 
     #cascade trinant autoriu istrins ir knygas (daznai naudojamas)
-    #do nothing - ismes klaida bandant trinti (nerekomentuojama)
+    #do nothing - ismes klaida bandant trinti (nerekomenduojama)
     genre = models.ManyToManyField(Genre, help_text='Choose genre(s) for this book', verbose_name='genre(s)')
 
     def __str__(self) -> str:

@@ -4,7 +4,7 @@
     <h1>{{ books_count }} Books</h1>
     <ul>
         {% for book in book_list %}
-            <li>{{ book.title }} - {{ book.author }}</li>
+            <li><a href="{% url 'book' book.pk %}">{{ book.title }}</a> - {{ book.author }}</li>
         {% endfor %}
     </ul>
 {% endblock content %}    

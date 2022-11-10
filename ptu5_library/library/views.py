@@ -39,3 +39,8 @@ class BookListView(ListView):
         #context['books_count'] = Book.objects.count()
         context['books_count'] = self.get_queryset().count()
         return context
+
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'library/book_detail.html'
