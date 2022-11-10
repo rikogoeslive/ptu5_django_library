@@ -1,0 +1,10 @@
+{% extends 'library/base.html' %}
+{% block title %}Books in  {{ block.super }}{% endblock title %}
+{% block content %}
+    <h1>{{ books_count }} Books</h1>
+    <ul>
+        {% for book in book_list %}
+            <li>{{ book.title }} - {{ book.author }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}    
