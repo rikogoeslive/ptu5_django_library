@@ -11,6 +11,10 @@ class Genre(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def link_filtered_books(self):
+        link = reverse('books')+ '?genre_id='+str(self.id)
+        return format_html('<a class="genre" href="{link}">{name}</a>', link=link, name=self)
+
 # Importavome modelių paketą
 # Sukūrėme klasę (models.Model)
 # Nurodėme, kad žanro pavadinimas bus iki 200 eilučių string'as, pagalbinį tekstą, kuris matysis administratoriaus svetainėje.

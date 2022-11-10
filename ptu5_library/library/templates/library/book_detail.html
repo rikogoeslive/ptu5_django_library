@@ -7,10 +7,10 @@
         <p>ISBN: {{ object.isbn }}</p>
     {% endif %}
     {% if object.genre %}
-        <p>Genres: {{ object.genre.all|join:", " }} 
-            {% comment %} {%for genre in object.genre.all %}
-                <span class="genre"> {{ genre }} </span>
-            {% endfor %} {% endcomment %}
+        <p>Genres: {# object.genre.all|join:", " #} 
+             {%for genre in object.genre.all %}
+                {{ genre.link_filtered_books }} 
+            {% endfor %} 
         </p>
     {% endif %}
     <div class="summary">

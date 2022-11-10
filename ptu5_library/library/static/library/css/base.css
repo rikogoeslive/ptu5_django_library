@@ -61,3 +61,25 @@ footer .container {
     display: flex;
     align-content: stretch;
 }
+
+.genre_filter {
+    float: right;
+    background-color: #aac;
+}
+
+ul {
+    list-style: none;
+    padding: 0.5rem 1rem;
+}
+
+ul li {
+    margin-bottom: 0.2rem;
+    padding: 0.2rem 1rem;
+}
+ul li a {
+    color: #236   
+}
+
+ul li:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
