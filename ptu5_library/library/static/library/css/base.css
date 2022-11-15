@@ -15,7 +15,23 @@ header, main, content {
 
 header {
     background-color: #445;
-    
+      
+}
+
+header .container span {
+    align-self: center;
+    color: #ccc;
+    padding: 0.5rem
+}
+   
+
+header .container {
+    display: flex;
+    flex-direction: row;
+}
+
+.spacer {
+    flex-grow: 1;
 }
 
 header a {
@@ -24,6 +40,8 @@ header a {
     padding: 0.5rem;
     text-decoration: none;
 }
+
+
 
 header a:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -136,3 +154,8 @@ table {
     margin: 0.5rem 1rem;
 }
 
+.form-error {
+    border: 3px solid #900;
+    background-color: #f66;
+    padding: 0.5rem;
+}

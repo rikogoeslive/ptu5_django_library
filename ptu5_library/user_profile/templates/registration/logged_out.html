@@ -1,0 +1,7 @@
+{% extends 'library/base.html' %}
+{% block title %}Logged out from {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>Logged out</h1>
+<p>Session closed.</p>
+<p>Session closed succesfully. <a href="{% url 'login' %}">Log in again</a>.</p>
+{% endblock content %}
