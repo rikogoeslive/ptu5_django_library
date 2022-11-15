@@ -64,7 +64,7 @@ footer .container {
 
 .genre_filter {
     float: right;
-    background-color: #aac;
+    background-color: #abd;
 }
 
 ul {
@@ -83,3 +83,56 @@ ul li a {
 ul li:hover{
     background-color: rgba(255, 255, 255, 0.2);
 }
+.paginator {
+    margin: 1rem;
+}
+
+.paginator a, .paginator span {
+    display: inline-block;
+    padding: 0.3rem;
+    margin: 1px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+}
+
+.paginator span {
+    background-color: #236;
+    color: #abd
+}
+
+.paginator a {
+    background-color: #fff;
+}
+
+.paginator form {
+    display: inline-block; 
+}
+
+
+ul.book_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+ul li.book {
+    flex-basis: 15rem;
+    border: 1px solid #999;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+ul.book_list li.book img {
+    max-width: 100%;
+}
+
+ul.book_list li.book h3 {
+    margin-top: 0;
+}
+
+table {
+    margin: 0.5rem 1rem;
+}
+
