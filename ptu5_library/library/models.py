@@ -1,6 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.html import format_html
 from django.urls import reverse
+from django.utils.timezone import datetime
 import uuid
 
 # Create your models here.
@@ -76,7 +78,14 @@ class BookInstance(models.Model):
     )
 
     status = models.CharField('status', max_length=1, choices=LOAN_STATUS, default='m')
-    #price = models.DecimalField(("price"), max_digits=18, decimal_places=2)
+    reader = models.ForeignKey(get_user_model(), verbose_name="reader", on_delete=models.SET_NULL, null=True, blank=True, related_name='taken_noobs')
+
+    @property
+    def is_overdue(self):
+        if self.due_back and self.due_back < datetime.date(datetime.now()):
+            return True
+        return False
+    
 
     def __str__(self) -> str:
         return f"{self.unique_id}: {self.book.title}"

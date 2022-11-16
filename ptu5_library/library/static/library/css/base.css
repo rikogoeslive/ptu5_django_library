@@ -127,14 +127,12 @@ ul li:hover{
     display: inline-block; 
 }
 
-
 ul.book_list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
 }
-
 
 ul li.book {
     flex-basis: 15rem;
@@ -158,4 +156,43 @@ table {
     border: 3px solid #900;
     background-color: #f66;
     padding: 0.5rem;
+}
+
+.table-grid {
+    display: grid;
+    padding: 0.5rem;
+}
+
+.my-books-table {
+    grid-template-columns: 2fr 1fr 1fr;
+    align-self: center;
+}
+
+.table-grid-cell {
+    display: inline-block;
+    align-self: stretch;
+    justify-self: stretch;
+    background-color: #fff;
+    padding: 0.5rem;
+
+}
+
+.center {
+    justify-self: stretch;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.dark {
+    background-color: #569;
+    columns: #eee;
+}
+
+.overdue {
+    background-color: #f99;
+    columns: #900;
+    font-weight: bold;
 }
