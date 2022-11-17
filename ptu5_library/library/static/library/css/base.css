@@ -6,7 +6,22 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     min-height: 100vh;
-    
+}
+
+.form-grid div {
+    display: inline-block;
+    padding: 0.5rem;
+    align-self: center;
+    justify-self: stretch;
+
+}
+
+.form-grid input {
+    width: 20%;
+}
+
+.form-grid {
+    grid-template-columns: 10rem auto;
 }
 
 header, main, content {
@@ -23,7 +38,6 @@ header .container span {
     color: #ccc;
     padding: 0.5rem
 }
-   
 
 header .container {
     display: flex;
@@ -40,8 +54,6 @@ header a {
     padding: 0.5rem;
     text-decoration: none;
 }
-
-
 
 header a:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -195,4 +207,21 @@ table {
     background-color: #f99;
     columns: #900;
     font-weight: bold;
+}
+
+.alert {
+    padding: 0.5rem 1rem;   
+}
+
+.alert-error {
+    background-color: #f99;
+    columns: #900;
+    border-color: #900;
+
+}
+
+.alert-success {
+    background-color: #afa;
+    color: #090;
+    border-color: #080;
 }
