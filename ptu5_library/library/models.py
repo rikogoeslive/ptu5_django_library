@@ -93,3 +93,26 @@ class BookInstance(models.Model):
 
     class Meta: #griezta aprasomoji klase
         ordering = ['due_back']
+
+
+class BookReview(models.Model):
+    book = models.ForeignKey(
+        Book,
+        verbose_name="book",
+        related_name="reviews",
+        on_delete=models.CASCADE,
+    )
+    reader = models.ForeignKey(
+        get_user_model(), 
+        verbose_name="reader", 
+        on_delete=models.CASCADE, 
+        related_name='book_reviews',
+    )
+    created_at = models.DateField("created_at", auto_now_add=True)
+    content = models.TextField("content", max_length=10000)
+
+    def __str__(self):
+        return f"{self.reader} on {self.book} at {self.created_at}"
+
+    class Meta:
+        ordering = ('-created_at', )

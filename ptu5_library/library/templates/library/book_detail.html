@@ -16,4 +16,14 @@
     <div class="summary">
         {{ object.summary|safe}}
     </div>
+    <h2>Reviews</h2>
+    {% if book.reviews %}
+        {% for review in book.reviews.all %}
+            <div class="book-review">
+                <h4>{{ review.reader }}
+                    <span class="float-right">{{ review.created_at }}</span></h4>
+                <p>{{ review.content }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endblock content %}

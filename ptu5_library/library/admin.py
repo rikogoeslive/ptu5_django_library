@@ -25,8 +25,18 @@ class BookInstanceAdmin(admin.ModelAdmin):
         ('General', {'fields':('unique_id', 'book')}),
         ('Availability', {'fields':('status', 'is_overdue', 'due_back', 'reader')})
     )
-# Register your models here.
+
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'display_books')
+    list_display_links = ('last_name', ) 
+
+
+class BookReviewAdmin(admin.ModelAdmin):
+    list_display=('book', 'reader', 'created_at')
+
+
 admin.site.register(models.Author)
 admin.site.register(models.Genre)
 admin.site.register(models.Book, BookdAdmin)
 admin.site.register(models.BookInstance, BookInstanceAdmin)
+admin.site.register(models.BookReview, BookReviewAdmin)

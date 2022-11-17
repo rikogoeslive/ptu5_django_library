@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormMixin
 from . models import Genre, Author, Book, BookInstance
 
 # Create your views here.
@@ -66,7 +67,7 @@ class BookListView(ListView):
         return context
 
 
-class BookDetailView(DetailView):
+class BookDetailView(FormMixin, DetailView):
     model = Book
     template_name = 'library/book_detail.html'
 

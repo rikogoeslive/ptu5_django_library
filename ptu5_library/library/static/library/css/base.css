@@ -225,3 +225,13 @@ table {
     color: #090;
     border-color: #080;
 }
+
+.float-right {
+    float: right;
+}
+
+.book-review h4 {
+    display: block;
+    padding: 0.5rem 1rem;
+    margin: 0;
+}
