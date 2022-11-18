@@ -11,7 +11,7 @@ class BookReviewForm(forms.ModelForm):
             reader = self.cleaned_data.get("reader")
             recent_posts = BookReview.objects.filter(
                 reader=reader,
-                created_at__gte=(datetime.now() - timedelta(minutes=60)),
+                created_at__gte=(datetime.now() - timedelta(hours=1)),
                 ) 
             if recent_posts:
                 return False
