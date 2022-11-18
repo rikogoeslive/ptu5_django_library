@@ -18,6 +18,7 @@
                 <a href="{% url 'books' %}">Books</a>                
                 <span class="spacer"></span>
                 {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}">{{ user }}</a>
                     <span>{{ user }}</span>
                     <a href="{% url 'user_books' %}">My Books</a>
                     <a href="{% url 'admin:index' %}">Admin</a>
