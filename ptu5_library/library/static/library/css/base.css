@@ -16,7 +16,7 @@ body {
 
 }
 
-.form-grid input {
+.form-grid input[type='text'] {
     width: 20%;
 }
 
