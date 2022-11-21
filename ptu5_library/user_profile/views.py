@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.core.validators import validate_email
+from . forms import UserUpdateForm, ProfileUpdateForm
 
 User = get_user_model()
 
@@ -38,3 +39,23 @@ def register(request):
 @login_required
 def profile(request):
     return render(request,'user_profile/profile.html')
+
+
+@login_required
+def update_profile(request):
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, f"User {request.user.username} profile updated.")
+            return redirect('profile')
+    else: 
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+
+    return render(request, 'user_profile/update_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form,
+    })

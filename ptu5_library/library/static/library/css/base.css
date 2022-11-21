@@ -255,3 +255,16 @@ table {
     display: flex;
     place-items: stretch stretch;
 }
+
+.button {
+    background-color: #ccc;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #999;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+}
+
+.button:hover {
+    background-color: #eee;
+}
