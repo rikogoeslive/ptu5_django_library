@@ -147,3 +147,15 @@ class UserBookInstanceUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
+class UserBookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = BookInstance
+    template_name = 'library/user_bookinstance_delete.html'
+    success_url = reverse_lazy('user_books')
+
+    def test_func(self):
+        book_instance = self.get_object()
+        return self.request.user == book_instance.reader
+
+    def form_valid(self, form):
+        messages.success(self.request, 'book returned ')
+        return super().form_valid(form)
