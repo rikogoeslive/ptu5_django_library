@@ -2,6 +2,7 @@
 {% block title %}My books in {{ block.super }}{% endblock title %}
 {% block content %}
 <h1>My books</h1>
+<p><a class="button" href="{% url 'user_bookinstance_create' %}">Borrrow a book</a></p>
 <div class="table-grid my-books-table">
     <div class="table-grid-cell center dark">Author - Book</div>
     <div class="table-grid-cell center dark">Due Date</div>
@@ -10,6 +11,6 @@
         <div class="table-grid-cell"> {{ book_instance.book }}</div>
         <div class="table-grid-cell center{% if book_instance.is_overdue %} overdue{% endif %}">{{ book_instance.due_back }}</div>
         <div class="table-grid-cell center{% if book_instance.is_overdue %} overdue{% endif %}">{{ book_instance.get_status_display }}</div>
-        {% endfor %}    
+    {% endfor %}    
 </div>    
 {%endblock content %}

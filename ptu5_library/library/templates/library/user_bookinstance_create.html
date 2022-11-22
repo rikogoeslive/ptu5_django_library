@@ -1,0 +1,11 @@
+{% extends 'library/base.html' %}
+{% block title %}Borrowing a book from {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>Borrow a book</h1>
+{% comment %} <div class="table-grid form-grid"> {% endcomment %}
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <p><button type="submit">Borrow</button></p>
+{% comment %} </div> {% endcomment %}
+{% endblock content %}
