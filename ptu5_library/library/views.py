@@ -122,7 +122,7 @@ class UserBookInstanceCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UserBookInstanceUpdateView(LoginRequiredMixin, UpdateView):
+class UserBookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = BookInstance
     fields = ('book', 'due_back', )
     template_name = 'library/user_bookinstance_form.html'
@@ -138,7 +138,7 @@ class UserBookInstanceUpdateView(LoginRequiredMixin, UpdateView):
         book_instance = self.get_object()
         return self.request.user == book_instance.reader
 
-    def get_contex_data(self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.get_object().status == 't':
             context['action'] = 'Extend'
