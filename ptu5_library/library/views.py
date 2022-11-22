@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -112,10 +112,38 @@ class UserBookListView(LoginRequiredMixin, ListView):
 class UserBookInstanceCreateView(LoginRequiredMixin, CreateView):
     model = BookInstance
     fields = ('book', 'due_back', ) 
-    template_name = 'library/user_bookinstance_create.html'
+    template_name = 'library/user_bookinstance_form.html'
     success_url = reverse_lazy('user_books')
 
     def form_valid(self, form):
         form.instance.reader = self.request.user
         form.instance.status = 'r'
+        messages.success(self.request, 'Book reserved')
         return super().form_valid(form)
+
+
+class UserBookInstanceUpdateView(LoginRequiredMixin, UpdateView):
+    model = BookInstance
+    fields = ('book', 'due_back', )
+    template_name = 'library/user_bookinstance_form.html'
+    success_url = reverse_lazy('user_books')
+
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        form.instance.status = 't'
+        messages.success(self.request, 'Book taken or extended')
+        return super().form_valid(form)
+
+    def test_func(self):
+        book_instance = self.get_object()
+        return self.request.user == book_instance.reader
+
+    def get_contex_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.get_object().status == 't':
+            context['action'] = 'Extend'
+        else:
+            context['action'] = 'Take'
+        return context
+
+

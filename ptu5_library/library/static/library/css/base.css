@@ -176,7 +176,7 @@ table {
 }
 
 .my-books-table {
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 5fr 1fr 1fr 1fr;
     align-self: center;
 }
 
