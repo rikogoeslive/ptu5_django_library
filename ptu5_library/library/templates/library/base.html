@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% load static i18n%}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+<html lang={{ LANGUAGE_CODE }}>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +15,8 @@
         {% comment %} meniukas {% endcomment %}
         <div class="container">
             {% block nav %}
-                <a href="{% url 'index' %}">Home</a>
-                <a href="{% url 'authors' %}">Authors</a>
+                <a href="{% url 'index' %}">&#127968;</a>
+                <a href="{% url 'authors' %}">{% trans "Authors" %}</a>
                 <a href="{% url 'books' %}">Books</a>                
                 <span class="spacer"></span>
                 {% if user.is_authenticated %}
@@ -29,6 +31,17 @@
                     <a href="{% url 'register' %}">Register</a>
                     <a href="{% url 'login' %}{% if request.path != 'accounts/logout/' %}?next={{ request.path }}"{% endif %}>Login</a>
                 {% endif %}
+                <span>
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}">
+                        <select name="language" onchange="this.form.submit()">
+                            {% for lang in LANGUAGES %}
+                                <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected{% endif %}>{{ lang.1 }}</option>
+                            {% endfor %}
+                        </select>        
+                    </form>
+                </span>
             {% endblock nav %}
         </div>
     </header>
